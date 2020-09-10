@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Mail;
-using System.Net.Sockets;
 using System.Net;
-using System.Net.Http;
-using System.Diagnostics.Eventing.Reader;
+
 
 namespace Tut_app
 {
@@ -22,6 +20,8 @@ namespace Tut_app
             string haslo = Console.ReadLine();
             Console.WriteLine("Tekst w  wiadomości? / Mail text?");
             string text = Console.ReadLine();
+            Console.WriteLine("Temat? / Subject? (Note: It will be accompanied by a random number to fill the mailbox)");
+            string subject = Console.ReadLine();
             Console.WriteLine("Adres osoby odbierającej ? / Receiver email");
             string dokogo = Console.ReadLine();
             
@@ -30,26 +30,20 @@ namespace Tut_app
             
             for (int i = 1; i <= ilosc; i++)
             {
-                mailSender(login, haslo, text, dokogo);
+                mailSender(login, haslo, text, subject, dokogo);
             }
-
-           
-            
-            
-
-
 
         }
 
         
-        static void mailSender(string loggin,string passwd, string Message, string MailTo)
+        static void mailSender(string loggin,string passwd, string Message, string Subj, string MailTo)
         {
             
             // Losowy temat by zapełnić skrzynke
             
             Random subject = new Random();
-            int sub = subject.Next(1, 500);
-            string subbo = sub.ToString();
+            int sub = subject.Next(1, int.MaxValue);
+            string subbo = Subj + " " + sub.ToString();
 
 
             // Połącz się z serwerem

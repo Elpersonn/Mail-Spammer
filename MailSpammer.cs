@@ -39,14 +39,13 @@ namespace Tut_app
         static void mailSender(string loggin,string passwd, string Message, string Subj, string MailTo)
         {
             
-            // Losowy temat by zapełnić skrzynke
+            // Creates random subject
             
             Random subject = new Random();
             int sub = subject.Next(1, int.MaxValue);
             string subbo = Subj + " " + sub.ToString();
 
-
-            // Połącz się z serwerem
+            // Connects to server
 
             SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
             SmtpServer.Port = 587;
@@ -57,13 +56,15 @@ namespace Tut_app
             MailMessage Mail = new MailMessage();
             SmtpServer.Credentials = pass;
             
-            // Rzeczy o mailu
+            // Things about email
             
             Mail.From = new MailAddress(loggin);
             Mail.To.Add(MailTo);
             Mail.Subject = subbo;
             Mail.Body = Message;
-            // Wysyłanie
+            
+            // Sending
+            
             SmtpServer.Send(Mail);
             Console.WriteLine("Sent!");
         }
@@ -71,6 +72,6 @@ namespace Tut_app
 
     }
     
-
+// Comments made english using arch btw
 
 }

@@ -72,6 +72,5 @@ namespace Tut_app
 
     }
     
-// Comments made english using arch btw
 
 }
